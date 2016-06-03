@@ -10,7 +10,6 @@
 
 	## Structure: 
 		- | lib
-<br>			
 		- | public/
 				..* - fonts/
 				..* - img/
@@ -18,23 +17,18 @@
 				..* - css/
 				..* - favicon.ico
 				..* - index.html
-<br>
 		- | src / 
 				..* - fonts/
-				..* - img/ 
+				..* - img/
 				..* - js/
 				..* - scss/
 				..* - html-parts/
 				..* - favicon.ico
 				..* - index.html
-<br>
 		- |	node_modules/
 		- | .gitignore
-<br>
-		- | .gulpfile.js	
-<br>
+		- | .gulpfile.js
 		- | .package.json
-<br>		
 		- | .readme.md		
 
 

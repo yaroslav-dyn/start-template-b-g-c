@@ -42,7 +42,6 @@ gulp.task('build:clean', function(){
 });
 
 
-
 // Static Server + watching css/html files
 gulp.task('serv', function() {
 
