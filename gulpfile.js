@@ -8,9 +8,13 @@ var del  = require('del');
 gulp.task('sass', function () {
     return gulp.src('src/scss/main.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('public/css'));
+        .pipe(gulp.dest('src/css/'));
 });
-
+//build css
+gulp.task('css-build', function(){
+    gulp.src('src/css/*.js')
+        .pipe(gulp.dest('public/css/'))
+});
 //build js
 gulp.task('js-build', function(){
     gulp.src('src/js/*.js')
@@ -33,11 +37,12 @@ gulp.task('build',
 [
     'html-build',
     'js-build',
-    'img-build'
+    'img-build',
+    'css-build'
 ]);
 
 // Clean public
-gulp.task('build:clean', function(){
+gulp.task('build-clean', function(){
     return del(['public/*']);
 });
 
@@ -46,12 +51,12 @@ gulp.task('build:clean', function(){
 gulp.task('serv', function() {
 
     browserSync.init({
-        server: "./"
+        server: "./src/"
     });
-    gulp.watch('src/*.html').on('change', browserSync.reload);
+    gulp.watch('src/**/*.html').on('change', browserSync.reload);
     gulp.watch('src/js/*.js' ).on('change', browserSync.reload);
     gulp.watch('src/scss/*.scss',['sass']);
-    gulp.watch('public/**/*.css' ).on('change', browserSync.reload);
+    gulp.watch('src/css/*.css' ).on('change', browserSync.reload);
 
 });
 

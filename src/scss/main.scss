@@ -1,8 +1,14 @@
+//main scss file
 //include modules libs
 @import '_fonts';
 @import '_variables';
 
 
+body{
+  font-size: 16px;
+  background: #3c3c3c;
+  color: #fff;
+}
 
 
 //import media
