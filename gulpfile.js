@@ -11,51 +11,70 @@ gulp.task('sass', function () {
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('src/css/'));
 });
-//build css
-gulp.task('css-build', function(){
-    gulp.src('src/css/*.css')
-        .pipe(gulp.dest('public/css/'))
-});
-//build js
-gulp.task('fonts-build', function(){
-    gulp.src('src/vendor/fonts/*')
-    .pipe(gulp.dest('public/survey/fonts/'))
-});
-//build html with Dependencies
-gulp.task('html-build', function () {
-    return gulp.src('src/*.html')
-        .pipe(useref())
-        .pipe(gulp.dest('public/'));
-});
-//build data
 
-//build img
-gulp.task('img-build', function () {
-    gulp.src('src/img/**/')
-    .pipe(gulp.dest('public/img/'));
-});
-
-//rigger html
+//rigger html * dev
 gulp.task('rigger-html', function () {
     gulp.src('src/html-parts/index-parts/*.html')
         .pipe(rigger())
         .pipe(gulp.dest('src/'));
 });
 
-//rigger js
+//rigger js * dev
 gulp.task('rigger-js', function () {
     gulp.src('src/js/parts/main.js')
         .pipe(rigger())
         .pipe(gulp.dest('src/js/'));
 });
 
-//all build
-gulp.task('build', 
-[
+//build vendor modules * dev
+gulp.task('vendor-modules-css', function () {
+    return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss'])
+        .pipe(sass())
+        .pipe(gulp.dest('src/vendor/bootstrap_4'))
+        .pipe(browserSync.stream());
+});
+//build vendor modules * dev
+gulp.task('vendor-modules-js', function () {
+    return gulp.src(['node_modules/bootstrap/dist/js/bootstrap.js', 'node_modules/jquery/dist/jquery.min.js' ])
+        .pipe(gulp.dest('src/vendor/'))
+
+});
+
+
+//build css * prod
+gulp.task('css-build', function(){
+    gulp.src('src/css/*.css')
+        .pipe(gulp.dest('public/css/'))
+});
+
+//build html with Dependencies * prod
+gulp.task('html-build', function () {
+    return gulp.src('src/*.html')
+        .pipe(useref())
+        .pipe(gulp.dest('public/'));
+});
+
+//build img * prod
+gulp.task('img-build', function () {
+    gulp.src('src/img/**/')
+    .pipe(gulp.dest('public/img/'));
+});
+
+
+//all build * dev
+gulp.task('build:dev', [
+    'vendor-modules-css',
+    'vendor-modules-js',
+    'sass',
+    'rigger-html',
+    'rigger-js'
+]);
+
+//all build * prod
+gulp.task('build', [
     'html-build',
-    'fonts-build',
     'img-build',
-    'css-build',
+    'css-build'
 ]);
 
 // Clean public
@@ -65,7 +84,8 @@ gulp.task('build-clean', function(){
 
 
 // Static Server + watching css/html files
-gulp.task('serve', function() {
+gulp.task('serve', ['build:dev'], function() {
+
     browserSync.init({
         server: "./src/"
     });
@@ -78,4 +98,9 @@ gulp.task('serve', function() {
 });
 
 
+gulp.task('serve:dist', ['build'], function() {
+    browserSync.init({
+        server: "./public/"
+    });
+});
 

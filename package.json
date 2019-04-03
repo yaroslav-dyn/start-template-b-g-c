@@ -1,14 +1,16 @@
 {
   "name": "start-front-end-tamplate",
-  "vershion": "0.1.1.",
+  "version": "1.1.2.",
   "devDependencies": {
-    "bootstrap": "^3.3.6",
-    "browser-sync": "^2.11.1",
+    "bootstrap": "^4.3.1",
+    "browser-sync": "^2.26.3",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-rigger": "^0.5.8",
-    "gulp-sass": "^2.3.0",
-    "gulp-useref": "^3.1.0",
+    "gulp-useref": "^3.1.6",
     "jquery": "^3.3.1"
+  },
+  "dependencies": {
+    "gulp-sass": "^4.0.2"
   }
 }

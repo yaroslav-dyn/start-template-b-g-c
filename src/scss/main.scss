@@ -4,10 +4,14 @@
 @import '_variables';
 
 html{
-	font-size: 16px;
+    font-size: 16px;
 }
 body{
-
+    padding-top: 65px;
+}
+.footer {
+    min-height: 100px;
+    background-color: $footer-bg;
 }
 
 

@@ -1,2 +1,9 @@
 html {
   font-size: 16px; }
+
+body {
+  padding-top: 65px; }
+
+.footer {
+  min-height: 100px;
+  background-color: #28a745; }
